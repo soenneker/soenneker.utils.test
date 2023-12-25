@@ -8,5 +8,5 @@
 ## Installation
 
 ```
-Install-Package Soenneker.Utils.Test
+dotnet add package Soenneker.Utils.Test
 ```
