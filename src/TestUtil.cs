@@ -11,7 +11,7 @@ public class TestUtil
     /// <summary>
     /// Builds and returns an <see cref="IConfiguration"/> from appsettings.json in the current directory (optionally plus a child path if there are multiple appsettings needed)
     /// </summary>
-    public static IConfiguration BuildConfig(string? childPath = null)
+    public static IConfiguration BuildConfig(string? childPath = null, string? fileName = null)
     {
         string directory;
         
@@ -20,7 +20,8 @@ public class TestUtil
         else
             directory = Directory.GetCurrentDirectory();
 
-        const string baseAppSettings = "appsettings.json";
+        string baseAppSettings = fileName ?? "appsettings.json";
+
         string? environmentAppSettings = null;
 
         IConfigurationBuilder builder = new ConfigurationBuilder()
