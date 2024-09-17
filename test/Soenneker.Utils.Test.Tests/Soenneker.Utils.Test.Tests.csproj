@@ -43,7 +43,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\src\Soenneker.Utils.Test.csproj" />
+        <ProjectReference Include="..\..\src\Soenneker.Utils.Test.csproj" />
     </ItemGroup>
 
 </Project>
