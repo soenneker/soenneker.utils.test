@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using FluentAssertions;
+using AwesomeAssertions;
 using Moq;
 using Soenneker.Utils.Test.Tests.Dtos.Abstract;
 using Xunit;
