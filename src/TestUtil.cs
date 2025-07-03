@@ -6,7 +6,7 @@ namespace Soenneker.Utils.Test;
 /// <summary>
 /// A utility library for useful test-based operations
 /// </summary>
-public class TestUtil
+public static class TestUtil
 {
     /// <summary>
     /// Builds and returns an <see cref="IConfiguration"/> from appsettings.json in the current directory (optionally plus a child path if there are multiple appsettings needed)
