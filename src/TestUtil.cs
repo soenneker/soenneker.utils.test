@@ -8,31 +8,36 @@ namespace Soenneker.Utils.Test;
 /// </summary>
 public static class TestUtil
 {
+    private const string DefaultAppSettings = "appsettings.json";
+
     /// <summary>
     /// Builds and returns an <see cref="IConfiguration"/> from appsettings.json in the current directory (optionally plus a child path if there are multiple appsettings needed)
     /// </summary>
-    public static IConfiguration BuildConfig(string? childPath = null, string? fileName = null)
+    public static IConfiguration BuildConfig(
+        string? childPath = null,
+        string? fileName = null,
+        string? environmentName = null)
     {
-        string directory;
-        
-        if (childPath != null)
-            directory = Path.Combine(Directory.GetCurrentDirectory(), childPath);
-        else
-            directory = Directory.GetCurrentDirectory();
+        string cwd = Directory.GetCurrentDirectory();
 
-        string baseAppSettings = fileName ?? "appsettings.json";
+        string basePath = string.IsNullOrEmpty(childPath)
+            ? cwd
+            : Path.Combine(cwd, childPath);
 
-        string? environmentAppSettings = null;
+        string settingsFile = string.IsNullOrEmpty(fileName)
+            ? DefaultAppSettings
+            : fileName;
 
-        IConfigurationBuilder builder = new ConfigurationBuilder()
-            .SetBasePath(directory)
-            .AddJsonFile(baseAppSettings);
+        var builder = new ConfigurationBuilder()
+            .SetBasePath(basePath)
+            .AddJsonFile(settingsFile, optional: false, reloadOnChange: false);
 
-        if (environmentAppSettings != null)
-            builder.AddJsonFile(environmentAppSettings);
+        if (!string.IsNullOrEmpty(environmentName))
+        {
+            // e.g. appsettings.Development.json
+            builder.AddJsonFile($"appsettings.{environmentName}.json", optional: true, reloadOnChange: false);
+        }
 
-        IConfiguration configRoot = builder.Build();
-
-        return configRoot;
+        return builder.Build();
     }
 }
