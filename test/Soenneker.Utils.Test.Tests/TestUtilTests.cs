@@ -1,14 +1,13 @@
-﻿using System.IO;
+using System.IO;
 using AwesomeAssertions;
 using Moq;
 using Soenneker.Utils.Test.Tests.Dtos.Abstract;
-using Xunit;
 
 namespace Soenneker.Utils.Test.Tests;
 
 public class TestUtilTests
 {
-    [Fact]
+    [Test]
     public void BuildConfig_ShouldReturnConfiguration_WhenNoParametersProvided()
     {
         // Arrange
@@ -28,7 +27,7 @@ public class TestUtilTests
         config["SomeKey"].Should().NotBeNull(); // Check for a known key in the appsettings.json
     }
 
-    [Fact]
+    [Test]
     public void BuildConfig_ShouldReturnConfiguration_WhenChildPathProvided()
     {
         // Arrange
@@ -50,7 +49,7 @@ public class TestUtilTests
         config["SomeKey"].Should().NotBeNull(); // Check for a known key in the appsettings.json
     }
 
-    [Fact]
+    [Test]
     public void BuildConfig_ShouldReturnConfiguration_WhenFileNameProvided()
     {
         // Arrange
@@ -70,7 +69,7 @@ public class TestUtilTests
         config["SomeKey"].Should().NotBeNull(); // Check for a known key in the customsettings.json
     }
 
-    [Fact]
+    [Test]
     public void BuildConfig_ShouldReturnConfiguration_WhenChildPathAndFileNameProvided()
     {
         // Arrange
