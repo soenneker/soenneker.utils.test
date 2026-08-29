@@ -13,6 +13,7 @@ public static class TestUtil
     /// <summary>
     /// Builds and returns an <see cref="IConfiguration"/> from appsettings.json in the current directory (optionally plus a child path if there are multiple appsettings needed)
     /// </summary>
+    /// <returns>Builds and returns an <see cref="IConfiguration"/> from appsettings.json in the current directory (optionally plus a child path if there are multiple appsettings needed).</returns>
     public static IConfiguration BuildConfig(
         string? childPath = null,
         string? fileName = null,
