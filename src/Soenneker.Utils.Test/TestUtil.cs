@@ -11,9 +11,12 @@ public static class TestUtil
     private const string DefaultAppSettings = "appsettings.json";
 
     /// <summary>
-    /// Builds and returns an <see cref="IConfiguration"/> from appsettings.json in the current directory (optionally plus a child path if there are multiple appsettings needed)
+    /// Builds configuration from a required JSON file beneath the current working directory and an optional environment-specific overlay.
     /// </summary>
-    /// <returns>Builds and returns an <see cref="IConfiguration"/> from appsettings.json in the current directory (optionally plus a child path if there are multiple appsettings needed).</returns>
+    /// <param name="childPath">An optional path appended to the current working directory.</param>
+    /// <param name="fileName">The required base settings filename. Defaults to <c>appsettings.json</c>.</param>
+    /// <param name="environmentName">An optional environment name used to load <c>appsettings.{Environment}.json</c> after the base file.</param>
+    /// <returns>The built configuration with environment-specific values overriding base values.</returns>
     public static IConfiguration BuildConfig(
         string? childPath = null,
         string? fileName = null,
